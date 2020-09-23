@@ -111,6 +111,11 @@ export default function router(history, routes, options = {}) {
       return fsm[LISTEN]();
     },
 
+    return() {
+      historyChannel.close();
+      return { done: true };
+    },
+
     throw(e, fsm) {
       switch (fsm.previousState) {
         case HANDLE_LOCATION:
